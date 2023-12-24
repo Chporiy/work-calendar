@@ -1,11 +1,9 @@
+import { EOL } from 'node:os';
 import { CalendarModel, Week } from '../model/types';
+import { COLUMN_STYLES, ROW_STYLES } from './constants';
 
 export class MarkupConstructor {
   private daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
-  private columnStyles = '{width: 90px;}';
-
-  private rowStyles = '{height: 70px; text-align: right;}';
 
   private model: CalendarModel;
 
@@ -22,27 +20,27 @@ export class MarkupConstructor {
 
   private getColumns() {
     return this.daysOfWeek.reduce(
-      (header, day) => `${header}_${this.columnStyles}. ${day} |`,
+      (header, day) => `${header}_${COLUMN_STYLES}. ${day} |`,
       '|',
     );
   }
 
   private getRows() {
     return this.model.reduce(
-      (rows, week) => rows + this.getRow(week) + MarkupConstructor.getEndOfLine(),
+      (rows, week) => rows + MarkupConstructor.getRow(week) + MarkupConstructor.getEndOfLine(),
       '',
     );
   }
 
-  private getRow(week: Week) {
+  private static getRow(week: Week) {
     return week.reduce(
       (row, day) => row + MarkupConstructor.getDay(day),
-      this.getRowMetaData(),
+      MarkupConstructor.getRowMetaData(),
     );
   }
 
-  private getRowMetaData() {
-    return `${this.rowStyles}. |`;
+  private static getRowMetaData() {
+    return `${ROW_STYLES}. |`;
   }
 
   private static getDay(day: number) {
@@ -50,6 +48,6 @@ export class MarkupConstructor {
   }
 
   private static getEndOfLine() {
-    return '\r\n';
+    return EOL;
   }
 }

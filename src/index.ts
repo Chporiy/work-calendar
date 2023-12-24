@@ -1,7 +1,7 @@
 import { exit } from 'process';
 import { getParamsFromReadline } from './getParamsFromReadline';
-import { MarkupConstructor } from './markup/MarkupConstructor';
-import { ModelConstructor } from './model/ModelCostructor';
+import { MarkupConstructor } from './markup';
+import { ModelConstructor } from './model';
 
 (async () => {
   const params = await getParamsFromReadline();

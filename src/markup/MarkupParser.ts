@@ -1,6 +1,5 @@
 import { EOL } from 'node:os';
-import { CalendarModel, Week } from '../model/types';
-import { MonthOverflowDaysFiller } from '../model/MonthOverflowDaysFiller';
+import { CalendarModel, Week, MonthOverflowDaysFiller } from '../model';
 
 export class MarkupParser {
   static toModel(markup: string): CalendarModel {

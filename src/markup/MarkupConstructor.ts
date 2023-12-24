@@ -1,5 +1,5 @@
 import { EOL } from 'node:os';
-import { CalendarModel, Week } from '../model/types';
+import { CalendarModel, Week } from '../model';
 import { COLUMN_STYLES, ROW_STYLES } from './constants';
 
 export class MarkupConstructor {

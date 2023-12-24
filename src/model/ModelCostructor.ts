@@ -1,4 +1,5 @@
-import { DayIndex, Week, CalendarModel } from './types';
+import { MonthOverflowDaysFiller } from './MonthOverflowDaysFiller';
+import { DayIndex, CalendarModel } from './types';
 
 interface Params {
   year: number;
@@ -24,8 +25,7 @@ export class ModelConstructor {
 
   construct() {
     let model = this.createModel();
-    model = ModelConstructor.fillFirstWeek(model);
-    model = ModelConstructor.fillLastWeek(model);
+    model = MonthOverflowDaysFiller.fill(model);
 
     return model;
   }
@@ -54,50 +54,11 @@ export class ModelConstructor {
     return this.dayOfWeekIndex[dayIndex];
   }
 
-  private static fillFirstWeek(model: CalendarModel) {
-    if (this.isFullWeek(model[0])) {
-      return model;
-    }
-
-    const copy = [...model];
-    const arrayWithFakeDays = this.createFakeDaysInWeekArray(copy[0]);
-
-    copy[0] = [...arrayWithFakeDays, ...copy[0]];
-
-    return copy;
-  }
-
-  private static fillLastWeek(model: CalendarModel) {
-    if (this.isFullWeek(model[model.length - 1])) {
-      return model;
-    }
-
-    const copy = [...model];
-    const lastWeekIndex = copy.length - 1;
-    const arrayWithFakeDays = this.createFakeDaysInWeekArray(copy[lastWeekIndex]);
-
-    copy[lastWeekIndex] = [...copy[lastWeekIndex], ...arrayWithFakeDays];
-
-    return copy;
-  }
-
-  private static createFakeDaysInWeekArray(week: Week) {
-    const diff = 7 - week.length;
-
-    if (diff === 0) return week;
-
-    return new Array(diff).fill(0) as number[];
-  }
-
   private static getDaysInMonth({ year, month }: Params) {
     return new Date(year, month + 1, 0).getDate();
   }
 
   private static isFirstDayInWeek(dayIndex: DayIndex) {
     return dayIndex === 0;
-  }
-
-  private static isFullWeek(week: Week) {
-    return week.length === 7;
   }
 }

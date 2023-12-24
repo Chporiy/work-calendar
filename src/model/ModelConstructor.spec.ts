@@ -14,14 +14,14 @@ describe('ModelConstructor', () => {
     ]);
   });
 
-  it('should construct a model with fake days in the first week if the first day of month is not Monday', () => {
+  it('should construct a model with overflow days in the first week if the first day of month is not Monday', () => {
     const constructor = new ModelConstructor({ year: 2023, month: 11 });
     const model = constructor.construct();
 
     expect(model[0]).toEqual([0, 0, 0, 0, 1, 2, 3]);
   });
 
-  it('should construct a model with fake days in the last week if the last day of month is not Sunday', () => {
+  it('should construct a model with overflow days in the last week if the last day of month is not Sunday', () => {
     const constructor = new ModelConstructor({ year: 2024, month: 0 });
     const model = constructor.construct();
 

@@ -1,6 +1,6 @@
 import { EOL } from 'os';
 import { MarkupConstructor } from './MarkupConstructor';
-import { ModelConstructor } from '../model/ModelCostructor';
+import { ModelConstructor } from '../model/ModelConstructor';
 
 describe('MarkupConstructor', () => {
   it('should return calendar markup by calendar model', () => {

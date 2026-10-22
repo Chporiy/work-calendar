@@ -1,4 +1,4 @@
-import { ModelConstructor } from './ModelCostructor';
+import { ModelConstructor } from './ModelConstructor';
 
 describe('ModelConstructor', () => {
   it('should return a model', () => {

@@ -11,7 +11,7 @@ export const getParamsFromReadline = async () => {
 
   const params = {
     year: Number(year),
-    month: Number(month),
+    month: Number(month) - 1,
   };
 
   return params;

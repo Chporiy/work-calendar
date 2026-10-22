@@ -19,11 +19,11 @@ git clone https://github.com/Chporiy/work-calendar.git
 npm install
 ```
 
-- Кun
+- Run
 
 ```
 npm start
 ```
 
 - Enter the year and month for which you want to create a calendar markup \
-  _Months range from 0 to 11_
+  _Months range from 1 to 12_
